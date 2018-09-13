@@ -76,6 +76,7 @@ public class ConfigPropertyMapper {
 		map(ConfigProperty.MSG_GIVE_SAVEROD, "messages.give-yourself");
 		map(ConfigProperty.MSG_ITEM_WERE_SAVED, "messages.items-saved");
 		map(ConfigProperty.MSG_RECEIVED_ROD, "messages.received");
+		map(ConfigProperty.MSG_CONFIG_RELOADED, "messages.config-reloaded");
 		
 		
 	}

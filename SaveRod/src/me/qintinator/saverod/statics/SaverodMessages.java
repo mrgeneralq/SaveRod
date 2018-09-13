@@ -12,6 +12,7 @@ public class SaverodMessages {
 	public static String noPermissionToCommand = getMessage("&cYou don't have permission to that command!");
 	public static String playerNotOnline = getMessage("&cInvalid player!");
 	public static String receivedSaveRod = getMessage(ConfigProperty.MSG_RECEIVED_ROD);
+	public static String configReloaded = getMessage(ConfigProperty.MSG_CONFIG_RELOADED);
 	
 	
 	
