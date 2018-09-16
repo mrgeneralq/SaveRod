@@ -1,5 +1,6 @@
 package me.qintinator.saverod.eventlisteners;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,9 +26,36 @@ public class OnPlayerDeath implements Listener {
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent e) {
 		
-		Player player = e.getEntity();
 		
-		for(ItemStack item: player.getInventory().getContents()) {
+		Player player = e.getEntity();		
+		ItemStack offHandItem = player.getInventory().getItemInOffHand();
+		
+		if(offHandItem == null)
+			return;
+		
+		if(player.getInventory().getItemInOffHand().isSimilar(saverodService.getSaveRod()))
+		{
+
+			
+			if(configPropertyService.keepLevels()) {
+				e.setDroppedExp(0);
+				e.setKeepInventory(true);
+			}
+			
+			if(offHandItem.getAmount() > 1)
+				player.getInventory().getItemInOffHand().setAmount(offHandItem.getAmount() -1);		
+			else
+				player.getInventory().getItemInOffHand().setType(Material.AIR);		
+			
+			player.sendMessage(SaverodMessages.itemsSaved);		
+			return;
+		}
+		
+		
+		for(int i = 0; i <  player.getInventory().getContents().length; i++) {
+			
+			ItemStack item = player.getInventory().getItem(i);
+			
 			
 			if(item == null)
 				continue;
@@ -37,18 +65,18 @@ public class OnPlayerDeath implements Listener {
 			
 			e.setKeepInventory(true);
 			
-			if(configPropertyService.keepLevels())
-			e.setKeepLevel(true);
-			
+			if(configPropertyService.keepLevels()) {
+				e.setKeepLevel(true);
+				e.setDroppedExp(0);
+			}
 				
 			if(item.getAmount() > 1)
 				item.setAmount(item.getAmount() -1);
 			else	
-			player.getInventory().remove(saverodService.getSaveRod());		
+			player.getInventory().setItem(i, null);		
 			
 			player.sendMessage(SaverodMessages.itemsSaved);
-			break;
-				
+			return;
 		}
 		
 	}

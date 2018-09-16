@@ -1,5 +1,5 @@
 name: SaveRod
-version: 2.2.1
+version: 2.2.2
 main: me.qintinator.saverod.Main
 commands:
   rod:
