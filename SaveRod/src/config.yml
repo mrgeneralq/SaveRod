@@ -9,3 +9,4 @@ messages:
   give-other: '&4You gave someone else a SaveRod'
   received: '&5You received a SaveRod'
   items-saved: '&2Your items were saved by the powers of the &6SaveRod'
+  config-reloaded: '&2Config has been reloaded!'
