@@ -33,7 +33,7 @@ public class OnPlayerDeath implements Listener {
 		if(offHandItem == null)
 			return;
 		
-		if(player.getInventory().getItemInOffHand().isSimilar(saverodService.getSaveRod()))
+		if(saverodService.isSaveRod(offHandItem))
 		{
 
 			
@@ -60,7 +60,7 @@ public class OnPlayerDeath implements Listener {
 			if(item == null)
 				continue;
 			
-			if(!item.isSimilar(saverodService.getSaveRod()))
+			if(!saverodService.isSaveRod(item))
 				continue;
 			
 			e.setKeepInventory(true);

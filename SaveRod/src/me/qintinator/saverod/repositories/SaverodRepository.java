@@ -23,12 +23,14 @@ public class SaverodRepository implements ISaverodRepository {
 		ItemMeta meta  = saverod.getItemMeta();
 		meta.setDisplayName(ChatColor.translateAlternateColorCodes('&',(String) ConfigPropertyMapper.get(ConfigProperty.SAVEROD_ITEMNAME)));
 		List<String> lore = new ArrayList<>();
+		
+		if(ConfigPropertyMapper.get(ConfigProperty.SAVEROD_LORE) != null){
 		lore.add(ChatColor.translateAlternateColorCodes('&', (String) ConfigPropertyMapper.get(ConfigProperty.SAVEROD_LORE)));
 		meta.setLore(lore);
+		}
+		
 		saverod.setItemMeta(meta);			
 		return saverod;
-
-
 	}
 
 	@Override
