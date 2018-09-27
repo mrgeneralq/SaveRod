@@ -68,6 +68,7 @@ public class ConfigPropertyMapper {
 		map(ConfigProperty.SAVEROD_LORE, "item.lore");
 		map(ConfigProperty.SAVEROD_MATERIAL, "item.material");
 		map(ConfigProperty.KEEP_LEVEL, "keep-levels");
+		map(ConfigProperty.MATERIAL_ONLY, "item.material-only");
 
 		
 		

@@ -7,4 +7,6 @@ public interface ISaverodService {
 	ItemStack getSaveRod();
 	void setSaveRod(ItemStack saveRod);
 	
+	boolean isSaveRod(ItemStack itemStack);
+	
 }

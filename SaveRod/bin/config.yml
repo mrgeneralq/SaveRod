@@ -1,4 +1,5 @@
 item:
+  material-only: false
   material: 'BLAZE_ROD'
   display-name: '&5SaveRod'
   lore: '&2The one and only!'
