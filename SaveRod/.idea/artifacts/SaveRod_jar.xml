@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SaveRod:jar">
+    <output-path>$USER_HOME$/Desktop/spigot server/plugins</output-path>
+    <root id="archive" name="SaveRod.jar">
+      <element id="module-output" name="SaveRod" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/spigot server/server.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
