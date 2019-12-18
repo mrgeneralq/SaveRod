@@ -25,56 +25,60 @@ public class OnPlayerDeath implements Listener {
 	
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent e) {
-		
-		
-		Player player = e.getEntity();		
+
+
+		Player player = e.getEntity();
 		ItemStack offHandItem = player.getInventory().getItemInOffHand();
-		
+
 		if(offHandItem == null)
 			return;
-		
+
 		if(saverodService.isSaveRod(offHandItem))
 		{
 
-			
+
 			if(configPropertyService.keepLevels()) {
 				e.setDroppedExp(0);
 				e.setKeepInventory(true);
+				e.getDrops().clear();
 			}
-			
+
+
 			if(offHandItem.getAmount() > 1)
-				player.getInventory().getItemInOffHand().setAmount(offHandItem.getAmount() -1);		
+				player.getInventory().getItemInOffHand().setAmount(offHandItem.getAmount() -1);
 			else
-				player.getInventory().getItemInOffHand().setType(Material.AIR);		
-			
-			player.sendMessage(SaverodMessages.itemsSaved);		
+				player.getInventory().getItemInOffHand().setType(Material.AIR);
+
+			player.sendMessage(SaverodMessages.itemsSaved);
 			return;
 		}
-		
-		
+
+
 		for(int i = 0; i <  player.getInventory().getContents().length; i++) {
-			
+
 			ItemStack item = player.getInventory().getItem(i);
-			
-			
+
+
 			if(item == null)
 				continue;
-			
+
 			if(!saverodService.isSaveRod(item))
 				continue;
-			
+
 			e.setKeepInventory(true);
-			
+			e.getDrops().clear();
+
 			if(configPropertyService.keepLevels()) {
 				e.setKeepLevel(true);
 				e.setDroppedExp(0);
+				e.getDrops().clear();
 			}
-				
+
 			if(item.getAmount() > 1)
 				item.setAmount(item.getAmount() -1);
-			else	
-			player.getInventory().setItem(i, null);		
-			
+			else
+			player.getInventory().setItem(i, null);
+
 			player.sendMessage(SaverodMessages.itemsSaved);
 			return;
 		}
