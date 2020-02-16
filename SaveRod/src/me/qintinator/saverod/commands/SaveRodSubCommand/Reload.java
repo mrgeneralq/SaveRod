@@ -1,5 +1,6 @@
 package me.qintinator.saverod.commands.SaveRodSubCommand;
 
+import me.qintinator.saverod.contracts.IMessageService;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -11,9 +12,11 @@ public class Reload implements ISaveRodSubCommand{
 
 	
 	private final Main main;
+	private final IMessageService messageService;
 	
-	public Reload(Main main) {
+	public Reload(Main main, IMessageService messageService) {
 		this.main = main;
+		this.messageService = messageService;
 	}
 	
 	@Override
@@ -22,11 +25,11 @@ public class Reload implements ISaveRodSubCommand{
 
 		if(!sender.hasPermission("saverod.reload"))
 		{
-			sender.sendMessage(SaverodMessages.noPermissionToCommand);
+			messageService.sendMessage(sender,SaverodMessages.noPermissionToCommand);
 			return;
 		}
 		
 		main.reloadConfig();
-		sender.sendMessage(SaverodMessages.configReloaded);	
+		messageService.sendMessage(sender,SaverodMessages.configReloaded);
 	}
 }
