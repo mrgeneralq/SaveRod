@@ -3,6 +3,8 @@ package me.qintinator.saverod.repositories;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.qintinator.saverod.model.ConfigProp;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -15,17 +17,22 @@ import me.qintinator.saverod.statics.ConfigPropertyMapper;
 public class SaverodRepository implements ISaverodRepository {
 	
 
-
 	@Override
 	public ItemStack getSaveRod() {
-	
+
 		ItemStack saverod = new ItemStack(Material.getMaterial((String) ConfigPropertyMapper.get(ConfigProperty.SAVEROD_MATERIAL)));
 		ItemMeta meta  = saverod.getItemMeta();
 		meta.setDisplayName(ChatColor.translateAlternateColorCodes('&',(String) ConfigPropertyMapper.get(ConfigProperty.SAVEROD_ITEMNAME)));
 		List<String> lore = new ArrayList<>();
 		
 		if(ConfigPropertyMapper.get(ConfigProperty.SAVEROD_LORE) != null){
-		lore.add(ChatColor.translateAlternateColorCodes('&', (String) ConfigPropertyMapper.get(ConfigProperty.SAVEROD_LORE)));
+
+			String loreLine = (String) ConfigPropertyMapper.get(ConfigProperty.SAVEROD_LORE);
+
+			for(String line : loreLine.split("\\\\n")){
+				lore.add(ChatColor.translateAlternateColorCodes('&', line));
+			}
+
 		meta.setLore(lore);
 		}
 		
